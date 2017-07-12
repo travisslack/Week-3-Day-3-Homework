@@ -3,6 +3,7 @@ require_relative('../db/sql_runner.rb')
 class Artist
 
   attr_reader(:id)
+  attr_accessor(:name)
 
   def initialize(details)
     @id = details['id'].to_i
@@ -18,6 +19,31 @@ class Artist
     RETURNING id;
     "
     @id = SqlRunner.run(sql)[0]['id'].to_i
+  end
+
+  def self.all()
+    sql = "
+    SELECT * FROM artists;"
+    return SqlRunner.run(sql)
+  end
+
+  def albums()
+    sql = "
+    SELECT * FROM albums
+    WHERE artist_id = #{@id};"
+    albums_hash = SqlRunner.run(sql)
+    result = albums_hash.map { |album| Album.new(album) }
+    return result
+  end
+
+  def update()
+    sql = "
+    UPDATE artists
+    SET 
+    name = '#{@name}'
+    WHERE 
+    id = #{@id}"
+    return SqlRunner.run(sql)
   end
 
 end
