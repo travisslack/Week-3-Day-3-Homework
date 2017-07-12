@@ -50,4 +50,24 @@ class Album
     return SqlRunner.run(sql)
   end
 
+  def delete()
+    sql = "
+    DELETE FROM albums
+    WHERE 
+    id = #{@id}"
+    return SqlRunner.run(sql)
+  end
+
+  def self.find(id_input)
+    sql = "
+    SELECT * FROM albums WHERE id = #{id_input}"
+    album = SqlRunner.run(sql)[0]
+    result = Album.new(album) 
+    return result
+    end
+
+
+    
+
+
 end
