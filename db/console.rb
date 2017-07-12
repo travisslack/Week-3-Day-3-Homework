@@ -12,17 +12,17 @@ album1.save
 Album.all
 Artist.all
 
-# p artist1.albums
-# p album1.artist
+p artist1.albums
+p album1.artist
 
 artist1.name = "Codeclan Codependent"
 
 artist1.update
-# p artist1
+p artist1
 
 album1.title = "Ruby Dreams"
 album1.update
-# p album1
+p album1
 
 artist1.delete
 album1.delete
