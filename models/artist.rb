@@ -40,7 +40,7 @@ class Artist
     sql = "
     UPDATE artists
     SET 
-    name = '#{@name}'
+    (name) = ('#{@name}')
     WHERE 
     id = #{@id}"
     return SqlRunner.run(sql)

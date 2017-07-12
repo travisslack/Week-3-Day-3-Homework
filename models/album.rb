@@ -42,9 +42,8 @@ class Album
     sql = "
     UPDATE albums
     SET 
-    title = '#{@title}',
-    genre = '#{@genre}',
-    artist_id = '#{@artist_id}'
+    (title, genre, artist_id) =
+    ('#{@title}', '#{@genre}', '#{@artist_id}')
     WHERE 
     id = #{@id}"
     return SqlRunner.run(sql)
